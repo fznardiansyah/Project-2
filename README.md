@@ -4,24 +4,76 @@ Dokumen ini menjelaskan langkah-langkah dari awal hingga akhir untuk melakukan d
 
 📁 Struktur Project
 ```
-project-2/
-├── .github/workflow
-|    ├── cd-deploy.yml
-|    ├── ci-docker-build.yml
-├── assets/
-│   ├── css/
-│   ├── img/
-│   ├── js/
-│   ├── scss/
-│   └── vendor/
+PROJECT-2/
+├── .github/workflows/        # Untuk CI/CD automation
+│    ├── ci-docker-build.yml
+│    └── cd-deploy.yml
+├── assets/                   # Folder asset web
 ├── forms/
 ├── .dockerignore
-├── Dockerfile
+├── Dockerfile                # Docker untuk static web
 ├── index.html
 ├── portfolio-details.html
 ├── service-details.html
 ├── starter-page.html
+├── README.md
+└── Readme.txt
 ```
+
+✅ Topologi CI/CD Deployment untuk Static Website (PROJECT-2)
+```
+ ┌──────────────────┐
+ │  Local Machine   │
+ │ (VS Code + Git)  │
+ └──────────────────┘
+          │
+          │ git push (feature/main)
+          ▼
+ ┌──────────────────────────┐
+ │       GitHub Repo        │
+ │ (.github/workflows/...)  │
+ └──────────────────────────┘
+          │
+          │ Trigger Pull Request / Push ke Main
+          ▼
+ ┌──────────────────────────┐
+ │    GitHub Actions CI     │
+ │ - Build Docker Image     │
+ │ - Push to Docker Hub     │
+ └──────────────────────────┘
+          │
+          │
+          ▼
+ ┌──────────────────────┐
+ │     Docker Hub       │
+ │ (docker.io/username/ │
+ │     project-2)       │
+ └──────────────────────┘
+          │
+          │
+          ▼
+ ┌───────────────────────────┐
+ │  GitHub Actions CD        │
+ │ - SSH ke VPS              │
+ │ - docker pull             │
+ │ - docker run / compose up │
+ └───────────────────────────┘
+          │
+          ▼
+ ┌──────────────────────┐
+ │     VPS / AWS EC2    │
+ │    (nginx Docker)    │
+ │ Exposed Port: 80     │
+ └──────────────────────┘
+          │
+          ▼
+ ┌───────────────────────┐
+ │   Internet / Users    │
+ │ Access via: http://   │
+ │     IP-VPS.com        │
+ └───────────────────────┘
+```
+
 ⚙️ Persiapan Awal
 1. Sudah memiliki akun:
     - GitHub
@@ -135,6 +187,17 @@ docker run -d --name static-container -p 80:80 fauzanardiansyah/portfolio:latest
 | `VPS_USER`        | Username SSH VPS (`ubuntu`, `ec2-user`, dll) |
 | `VPS_PRIVATE_KEY` | Isi dari private key (`.pem` / `id_rsa`)     |
 
+🗂 Struktur Proyek dalam VPS (setelah deploy)
+```
+[Docker Container: project-2]
+ └── /usr/share/nginx/html/
+      ├── index.html
+      ├── portfolio-details.html
+      ├── service-details.html
+      ├── starter-page.html
+      └── assets/
+```
+
 ✅ Pengujian CI/CD
 1. Buat branch:
    `git checkout -b feature/ubah-footer`
@@ -143,3 +206,12 @@ docker run -d --name static-container -p 80:80 fauzanardiansyah/portfolio:latest
 4. GitHub Action akan otomatis build dan deploy
 5. Buka VPS dan lihat hasil update di browser
    `http://IP-VPS`
+
+📦 Alur CI/CD Detail
+| Proses           | Keterangan                                             |
+| ---------------- | ------------------------------------------------------ |
+| **Dev & Commit** | Kamu coding di VS Code → git push ke GitHub            |
+| **CI (Build)**   | GitHub Actions build Docker Image → push ke Docker Hub |
+| **CD (Deploy)**  | GitHub Actions SSH ke VPS → pull image → docker run    |
+| **Akses Web**    | User/public akses website via domain atau IP VPS       |
+
