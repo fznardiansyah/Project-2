@@ -26,46 +26,46 @@ project-2/
 
 🐳 Setup Docker Lokal
 1. Clone Repository
-   
+   ```
    git clone git@github.com:fznardiansyah/Project-2.git
    cd Project-2
-   
+   ```
 2. Buat Dockerfile
-   
+   ```
    FROM nginx:alpine
    COPY . /usr/share/nginx/html
    EXPOSE 80
-   
+   ```
 3. Buat .dockerignore
-   
+   ```
    .git
    node_modules
    Dockerfile
    .dockerignore
-   
+   ```
 4. Build & Run Docker Lokal
-   
+   ```
    docker build -t static-website .
    docker run -d -p 8080:80 portfolio-container
    (Akses: http://localhost:8080)
-
+   ```
 ☁️ Push ke Docker Hub
-
+```
 docker tag portfolio-container fauzanardiansyah/portfolio:latest
 docker push fauzanardiansyah/portfolio:latest
-
+```
 💻 Deploy Manual di VPS
-
+```
 ssh -i ~/.ssh/id_rsa ubuntu@<VPS_IP>
 docker pull fauzanardiansyah/portfolio:latest
 docker stop portfolio-container || true
 docker rm portfolio-container || true
 docker run -d --name static-container -p 80:80 fauzanardiansyah/portfolio:latest
-
+```
 🤖 CI/CD Automation (GitHub Actions)
 
 1. CI - Build & Push Docker Image
-   
+   ```
    File: .github/workflows/ci-docker-build.yml
    name: Build and Push Docker Image
       
@@ -93,9 +93,9 @@ docker run -d --name static-container -p 80:80 fauzanardiansyah/portfolio:latest
                context: .
                push: true
                tags: fauzanardiansyah/portfolio
-
+    ```
 2. CD - Deploy ke VPS Otomatis
-   
+   ```
    File: .github/workflows/cd-deploy.yml
    name: Deploy to VPS
 
@@ -119,7 +119,7 @@ docker run -d --name static-container -p 80:80 fauzanardiansyah/portfolio:latest
                docker stop portfolio-container || true
                docker rm portfolio-container || true
                docker run -d --name portfolio-container -p 80:80 fauzanardiansyah/portfolio
-
+    ```
 🔐 Secrets GitHub Actions
 | Secret Name       | Keterangan                                   |
 | ----------------- | -------------------------------------------- |
