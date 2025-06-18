@@ -3,7 +3,7 @@
 Dokumen ini menjelaskan langkah-langkah dari awal hingga akhir untuk melakukan deployment dan implementasi CI/CD dari website statis berbasis HTML, CSS, JS menggunakan Docker, GitHub Actions, dan VPS (misalnya AWS Academy Lab).
 
 📁 Struktur Project
-
+```
 project-2/
 ├── assets/
 │   ├── css/
@@ -16,7 +16,7 @@ project-2/
 ├── portfolio-details.html
 ├── service-details.html
 ├── starter-page.html
-
+```
 ⚙️ Persiapan Awal
 1. Sudah memiliki akun:
     - GitHub
