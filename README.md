@@ -137,7 +137,7 @@ docker run -d --name static-container -p 80:80 fauzanardiansyah/portfolio:latest
 
 ✅ Pengujian CI/CD
 1. Buat branch:
-   git checkout -b feature/ubah-footer
+   `git checkout -b feature/ubah-footer`
 2. Ubah salah satu HTML lalu commit dan push
 3. Buat Pull Request → Merge ke main
 4. GitHub Action akan otomatis build dan deploy
