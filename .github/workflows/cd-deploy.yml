@@ -20,3 +20,5 @@ jobs:
             docker stop static-container || true
             docker rm static-container || true
             docker run -d --name static-container -p 80:80 fznardiansyah/static-website:latest
+
+            
