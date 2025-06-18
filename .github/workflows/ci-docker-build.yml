@@ -23,4 +23,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: fznardiansyah/static-website:latest
+          tags: fauzanardiansyah/portfolio
