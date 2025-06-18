@@ -131,7 +131,7 @@ docker run -d --name static-container -p 80:80 fauzanardiansyah/portfolio:latest
 | ----------------- | -------------------------------------------- |
 | `DOCKER_USERNAME` | Username Docker Hub                          |
 | `DOCKER_PASSWORD` | Password akun Docker (atau token)            |
-| `VPS_HOST`        | IP VPS kamu                                  |
+| `VPS_HOST`        | IP VPS                                       |
 | `VPS_USER`        | Username SSH VPS (`ubuntu`, `ec2-user`, dll) |
 | `VPS_PRIVATE_KEY` | Isi dari private key (`.pem` / `id_rsa`)     |
 
