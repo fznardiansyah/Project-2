@@ -210,7 +210,7 @@ docker run -d --name static-container -p 80:80 fauzanardiansyah/portfolio:latest
 📦 Alur CI/CD Detail
 | Proses           | Keterangan                                             |
 | ---------------- | ------------------------------------------------------ |
-| **Dev & Commit** | Kamu coding di VS Code → git push ke GitHub            |
+| **Dev & Commit** | Coding di VS Code → git push ke GitHub            |
 | **CI (Build)**   | GitHub Actions build Docker Image → push ke Docker Hub |
 | **CD (Deploy)**  | GitHub Actions SSH ke VPS → pull image → docker run    |
 | **Akses Web**    | User/public akses website via domain atau IP VPS       |
