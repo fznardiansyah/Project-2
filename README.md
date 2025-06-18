@@ -52,8 +52,9 @@ project-2/
    ```
    docker build -t static-website .
    docker run -d -p 8080:80 portfolio-container
-   (Akses: http://localhost:8080)
    ```
+   `(Akses: http://localhost:8080)`
+   
 ☁️ Push ke Docker Hub
 ```
 docker tag portfolio-container fauzanardiansyah/portfolio:latest
