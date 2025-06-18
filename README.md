@@ -53,7 +53,7 @@ project-2/
    docker build -t static-website .
    docker run -d -p 8080:80 portfolio-container
    ```
-   `(Akses: http://localhost:8080)`
+   `Akses: http://localhost:8080`
    
 ☁️ Push ke Docker Hub
 ```
@@ -142,3 +142,4 @@ docker run -d --name static-container -p 80:80 fauzanardiansyah/portfolio:latest
 3. Buat Pull Request → Merge ke main
 4. GitHub Action akan otomatis build dan deploy
 5. Buka VPS dan lihat hasil update di browser
+   `http://IP-VPS`
