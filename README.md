@@ -5,6 +5,9 @@ Dokumen ini menjelaskan langkah-langkah dari awal hingga akhir untuk melakukan d
 📁 Struktur Project
 ```
 project-2/
+├── .github/workflow
+|    ├── cd-deploy.yml
+|    ├── ci-docker-build.yml
 ├── assets/
 │   ├── css/
 │   ├── img/
@@ -12,6 +15,8 @@ project-2/
 │   ├── scss/
 │   └── vendor/
 ├── forms/
+├── .dockerignore
+├── Dockerfile
 ├── index.html
 ├── portfolio-details.html
 ├── service-details.html
